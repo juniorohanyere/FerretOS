@@ -20,6 +20,8 @@ A light-weight, but complex, terminal-based OS where all the basic features of a
 
 **Networking:** provides networking features such as `TCP/IP` protocol support, `network configuration`, and `network device drivers`.
 
+**Web interfacing:** provides `web browsing` features, `interfaced` through the command line.
+
 **Multitasking:** allows multiple programs or processes to `run simultaneously`, sharing system resources such as CPU time and memory.
 
 **Error handling:** provides error handling features that `detect` and `recover` from errors such as `hardware failures`, `software crashes`, and `network errors`.
