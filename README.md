@@ -28,6 +28,6 @@ A light-weight, but complex, terminal-based OS where all the basic features of a
 
 **Virtualisation:** provides virtualisation features that allow multiple operating systems or instances of an operating system to run on a single physical machine, and also ability to run on virtualisation softwares, like `virtual box` and `vmware`, as a `guest operating system`.
 
-**Windowless:** provides a command-line interface, where there is no support for `windowing` features, every activity is carried out on a `single terminal`.
+**Windowless:** provides a command-line interface, where there is no support for `windowing` features or `graphical user interface (GUI)` , every activity is carried out on a `single terminal`.
 
 **Customization:** provides customization for system `layouts` and `appearance`.
