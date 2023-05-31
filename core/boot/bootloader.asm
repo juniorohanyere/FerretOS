@@ -1,4 +1,5 @@
 ; simple bootloader program
+[org 0x7c00]
 
 ; variable declarations
 section .data
