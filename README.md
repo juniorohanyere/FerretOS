@@ -31,3 +31,131 @@ A light-weight, but complex, terminal-based OS where all the basic features of a
 **Windowless:** provides a command-line interface, where there is no support for `windowing` features or `graphical user interface (GUI)` , every activity is carried out on a `single terminal`.
 
 **Customization:** provides customization for system `layouts` and `appearance`.
+
+# Project Structure
+
+```
+LINEOS
+ |
+ |-core/
+ |  |
+ |  |-boot/
+ |  |  |
+ |  |  |-*.asm
+ |  |  |-*.c
+ |  |  |-*.h
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-cpu/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-drivers/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-kernel/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-Makefile
+ |  |-README.md
+ |
+ |-os/
+ |  |
+ |  |-libs/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-shell/
+ |  |  |
+ |  |  |-lish/
+ |  |  |  |
+ |  |  |  |-commands/
+ |  |  |  |  |
+ |  |  |  |  |-*.c
+ |  |  |  |  |-*.h
+ |  |  |  |  |-Makefile
+ |  |  |  |  |-README.md
+ |  |  |  |
+ |  |  |  |-shell/
+ |  |  |  |  |
+ |  |  |  |  |-*.c
+ |  |  |  |  |-*.h
+ |  |  |  |  |-Makefile
+ |  |  |  |  |-README.md
+ |  |  |  |
+ |  |  |  |-Makefile
+ |  |  |  |-README.md
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-sysroot/
+ |  |  |
+ |  |  |-bin/
+ |  |  |  |
+ |  |  |  |-(executables)
+ |  |  |
+ |  |  |-devices/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |
+ |  |  |-etc/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |  
+ |  |  |-home/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |
+ |  |  |-media/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |
+ |  |  |-root/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |
+ |  |  |-tmp/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |
+ |  |  |-usr/
+ |  |  |  |
+ |  |  |  |-(?)
+ |  |  |  |
+ |  |  |  |-bin/
+ |  |  |     |
+ |  |  |     |-(executables)
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-term/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-utils/
+ |  |  |
+ |  |  |-Makefile
+ |  |  |-README.md
+ |  |
+ |  |-Makefile
+ |  |-README.md
+ |
+ |-AUTHORS.md
+ |-CONTRIBUTING.md
+ |-CONTRIBUTORS.md
+ |-LICENSE
+ |-Makefile
+ |-README.md
+ |-SUPPORTERS.md
+
+```
