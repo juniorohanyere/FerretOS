@@ -1,10 +1,10 @@
 # clios
 
-clios is an acronym for command line interface operating system 
+`clios` is an acronym for `command line interface operating system` 
 
-An operating system (OS) that manages computer hardware and software resources and provides common services for computer programs via a command-line interface (CLI).
+> An operating system (OS) that manages computer hardware and software resources and provides common services for computer programs via a command-line interface (CLI).
 
-A light-weight, but complex, terminal-based OS where all the basic features of an OS are displayed on, and operated from, the CLI.
+> A light-weight, but complex, terminal-based OS where all the basic features of an OS are displayed on, and operated from, the CLI.
 
 # Key Features
 
