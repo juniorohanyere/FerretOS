@@ -1,9 +1,7 @@
 ; simple bootloader program
-[org 0x7c00]
 
-; variable declarations
-section .data
-	string db "Line OS", 0xa
+[bits 16]	; use 16 bits
+[org 0x7c00]	; start address
 
 ; code wise
 section .text
@@ -11,20 +9,20 @@ section .text
 
 ; entry point
 _start:
-	; print "Line OS" to standard output
-	mov eax, 4	; system call for write
-	mov ebx, 1	; file descriptor for stdout
-	mov ecx, string	; address of string to print
-	mov edx, 13	; number of bytes to print
-	int 0x80	; call kernel (interrupt)
+	mov ah, 0x0e	; tty mode
+	mov si, string	;
+printstring:
+	lodsb
+	cmp al, 0
+	je done
+	int 0x10
+	jmp printstring; jump to printstring, creating an infinite loop
+done:
+	hlt
 
-	;exit program with status code 0
-	mov eax, 1	; system call for exit
-	;xor ebx, ebx	; status code 0
-	int 0x80	; call kernel (interrupt)
+string:
+	db "Line OS", 0
 
-	jmp _start	; jump to _start, creating an infinite loop
-
-	; magic number
-	times 510 - ($-$$) db 0
-	dw 0xaa55
+; magic number
+times 510 - ($-$$) db 0
+dw 0xaa55
