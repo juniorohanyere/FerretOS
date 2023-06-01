@@ -20,6 +20,7 @@ printstring:
 done:
 	hlt	; halt the system
 
+; section .data
 string:
 	db "Line OS", 0	; the string to print
 
