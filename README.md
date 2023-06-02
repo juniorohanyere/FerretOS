@@ -43,121 +43,85 @@ clios
  |  |
  |  |-boot/
  |  |  |
- |  |  |-*.asm
- |  |  |-*.c
- |  |  |-*.h
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-cpu/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-drivers/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-kernel/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
- |  |-Makefile
- |  |-README.md
+ |  |-(...)
  |
  |-os/
  |  |
+ |  |-bash/
+ |  |  |
+ |  |  |-(...)
+ |  |
  |  |-libs/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
- |  |
- |  |-shell/
- |  |  |
- |  |  |-lish/
- |  |  |  |
- |  |  |  |-commands/
- |  |  |  |  |
- |  |  |  |  |-*.c
- |  |  |  |  |-*.h
- |  |  |  |  |-Makefile
- |  |  |  |  |-README.md
- |  |  |  |
- |  |  |  |-shell/
- |  |  |  |  |
- |  |  |  |  |-*.c
- |  |  |  |  |-*.h
- |  |  |  |  |-Makefile
- |  |  |  |  |-README.md
- |  |  |  |
- |  |  |  |-Makefile
- |  |  |  |-README.md
- |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-sysroot/
  |  |  |
  |  |  |-bin/
  |  |  |  |
- |  |  |  |-(executables)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-devices/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-etc/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |  
  |  |  |-home/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-media/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-root/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-tmp/
  |  |  |  |
- |  |  |  |-(?)
+ |  |  |  |-(...)
  |  |  |
  |  |  |-usr/
  |  |  |  |
- |  |  |  |-(?)
- |  |  |  |
  |  |  |  |-bin/
  |  |  |     |
- |  |  |     |-(executables)
+ |  |  |     |-(...)
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-term/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
  |  |-utils/
  |  |  |
- |  |  |-Makefile
- |  |  |-README.md
+ |  |  |-(...)
  |  |
- |  |-Makefile
- |  |-README.md
+ |  |-websh
+ |  |  |
+ |  |  |-(...)
+ |  |
+ |  |-(...)
  |
- |-AUTHORS.md
- |-CONTRIBUTING.md
- |-CONTRIBUTORS.md
- |-LICENSE
- |-Makefile
- |-README.md
- |-SUPPORTERS.md
+ |-(...)
 
 ```
+> See the readme files located in each directories for more info
