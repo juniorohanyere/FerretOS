@@ -6,7 +6,7 @@ ELFS = bootloader.elf
 
 LDSCRIPT = -Ttext=0x7c00
 
-AFLAGS = -f elf64
+AFLAGS = elf64
 
 OBJS = bootloader.o
 
@@ -15,11 +15,11 @@ QEMU = qemu-system-x86_64
 TARGET = bootloader
 
 $(TARGET): $(OBJS)
-	$(LD) -s $(LDSCRIPT) $(OBJS) -o $(ELFS)
-	objcopy -O binary $(ELFS) $(TARGET)
+	@$(LD) -s $(LDSCRIPT) $(OBJS) -o $(ELFS)
+	@objcopy -O binary $(ELFS) $(TARGET)
 
 bootloader.o: bootloader.asm
-	$(ASM) $(AFLAGS) bootloader.asm
+	@$(ASM) -f $(AFLAGS) bootloader.asm
 
 .PHONY: run clean clean-all
 
