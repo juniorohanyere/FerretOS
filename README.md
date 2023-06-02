@@ -1,6 +1,6 @@
-# clios
+# CLIOS
 
-`clios` is an acronym for `command line interface operating system` 
+`CLIOS` is an acronym for `Command Line Interface Operating System` 
 
 > An operating system (OS) that manages computer hardware and software resources and provides common services for computer programs via a command-line interface (CLI).
 
