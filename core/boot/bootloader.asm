@@ -14,27 +14,24 @@ clear:
 	mov ah, 0x00
 	mov al, 0x03
 	int 0x10
-	mov cx, 0x1000
 	popa	; return all pushed registers
+;	mov cx, 0x1000
 
 ; a delay function
-delay:
-	mov dx, 0x2000
+;delay:
+;	mov dx, 0x2000
 
 ; decrease dx and cx
-decrease:
-	dec dx
-	jnz decrease	; jump to decrease if dx is not zero
+;decrease:
+;	dec dx
+;	jnz decrease	; jump to decrease if dx is not zero
 
-	dec cx
-	jnz delay	; jump to delay if cx is not zero
-
-	int 0x10	; interrupt
+;	dec cx
+;	jnz delay	; jump to delay if cx is not zero
 
 ; entry point
 _start:
-	mov ah, 0x0e	; tty mode (teletype mode)
-	mov si, string
+	call tty
 
 printstring:
 	lodsb	; load the @string into al
@@ -43,8 +40,18 @@ printstring:
 	int 0x10	; interrupt
 	jmp printstring; jump to printstring, if not end of string
 
+newline:
+	mov ah, 0x0e
+	mov al, 0x0D
+	int 0x10
+
+	mov al, 0x0A
+	int 0x10
+	ret
+
 ; wait for keypress
 keypress:
+	call newline
 
 	; push all registers
 	pusha
@@ -54,31 +61,32 @@ keypress:
 
 	cmp al, 0	; print a string if a key is pressed
 
-	jg newline	; if the value of al is greater, it means a key has been pressed
-	int 0x10
+	jg keypressed	; if the value of al is greater, it means a key has been pressed
 
 	; restore registers
 	popa
 
 	jmp keypress	; keep the display unchanged until a key is pressed
 
-newline:
-	mov ah, 0x0e	; tty mode, tell the program we're printing characters
-
-	mov al, 0x0D	; carriage return "\r"
-	int 0x10
-
-	mov al, 0x0A	; new line "\n"
-	int 0x10
+keypressed:
+	call newline
 	jmp _start	; repeat the process again
-	int 0x10
 
 done:
 	hlt	; halt the system
+tty:
+	mov ah, 0x0e	; tty mode (teletype mode)
+	mov si, string
+	ret
 
 ; section .data
 string:
-	db "CLIOS-Command_Line_Interface_Operating_System-pre-release_v1.0.0", 0	; the string to print
+	db \
+	"CLIOS-Command_Line_Interface_Operating_System-pre-release_v1.0.0", \
+	0x00	;;
+		 ; the string to print,
+		 ; terminating with a carriage return character
+		;;
 
 ; fill remaining spaces with 0
 times 510 - ($-$$) db 0
