@@ -18,7 +18,7 @@ $(TARGET): $(OBJS)
 	@$(LINKER) -s $(LSCRIPT) $(OBJS) -o $(ELFS)
 	@objcopy -O binary $(ELFS) $(TARGET)
 
-bootsector.o: bootsector.asm bootsector.inc data.asm
+bootsector.o: bootsector.asm bootsector.inc data.asm screen.asm stdio.asm
 	@$(ASM) -f $(AFLAGS) bootsector.asm
 
 data.o: data.asm

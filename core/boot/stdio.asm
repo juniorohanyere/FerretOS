@@ -60,8 +60,6 @@ newline:
 
 	ret
 
-	;jmp _start	; jump to _start function (infinite loop)
-
 ;;
  ; keypressed - function to process keyboard input
 ;;

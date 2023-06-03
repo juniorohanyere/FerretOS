@@ -26,7 +26,7 @@ _start:
 %include "screen.asm"
 %include "stdio.asm"
 
-; fill remaining spaces with 0
+; padding: fill remaining spaces with 0(510 zeros minus size of previous codes)
 times 510 - ($-$$) db 0
 
 ; magic number
