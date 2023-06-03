@@ -1,0 +1,3 @@
+;;
+
+extern _start
