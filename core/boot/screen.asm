@@ -1,7 +1,9 @@
+[bits 16]	; using 16-bits mode
+
 ;;
  ; clear - clears the screen
 ;;
-[bits 16]
+
 clear:
 	pusha	; push all registers
 

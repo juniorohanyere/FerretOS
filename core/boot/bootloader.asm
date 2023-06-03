@@ -1,7 +1,6 @@
 ; simple bootloader program
 
-[bits 16]	; use 16 bits
-;[org 0x7c00]	; start address
+[bits 16]	; use 16-bits mode
 
 ; code section
 section .text

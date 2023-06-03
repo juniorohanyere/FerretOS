@@ -2,22 +2,23 @@
 ;;;;		boot sector		;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[bits 16]	; 16 bits mode
+[bits 16]	; using 16-bits mode
 
 ; code section
 section .text
-	;global _start
-	;extern tty
 	%include "bootsector.inc"
 
-	extern clear
+;;
+ ; _clear - calls the clear function in screen.asm
+;;
+
 _clear:
 	call clear
-
-; entry point
+;;
+ ; _start - entry point
 _start:
-	mov ah, 0x0e	; tty, print characters
-	mov si, string
+	mov ah, 0x0e	; tty mode, print characters
+	mov si, string	; source the @string variable, see data.asm
 
 	jmp printstring
 
