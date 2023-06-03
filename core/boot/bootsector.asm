@@ -6,12 +6,18 @@
 
 ; code section
 section .text
-	global _start
-	extern tty
+	;global _start
+	;extern tty
+	%include "bootsector.inc"
 
 ; entry point
 _start:
-	jmp tty
+	call clear
+
+	mov ah, 0x0e	; tty, print characters
+	mov si, string
+
+	jmp printstring
 
 ; fill remaining spaces with 0
 times 510 - ($-$$) db 0

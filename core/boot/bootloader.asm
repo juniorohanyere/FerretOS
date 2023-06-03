@@ -15,6 +15,7 @@ clear:
 	mov al, 0x03
 	int 0x10
 	popa	; return all pushed registers
+	ret
 ;	mov cx, 0x1000
 
 ; a delay function
