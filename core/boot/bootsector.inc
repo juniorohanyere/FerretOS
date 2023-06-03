@@ -1,6 +1,7 @@
 ;;
 
-global _start
+global _start	; bootsector.asm
 
-extern printstring
-extern string
+extern clear	; screen.asm
+extern printstring	; stdio.asm
+extern string	; data.asm

@@ -4,3 +4,5 @@
 
 halt:
 	hlt	; halt the system
+
+	ret

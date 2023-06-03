@@ -2,5 +2,5 @@
 
 string:
 	db \
-	"CLIOS-Command_Line_Interface_Operating_System-pre-release_v1.0.0", \
+	"CLIMB-Command_Line_Interface_Multi-Bootloader-v1.0.0_(pre-release)", \
 	0x00	; the string to print

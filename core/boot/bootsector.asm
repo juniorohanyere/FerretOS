@@ -10,14 +10,20 @@ section .text
 	;extern tty
 	%include "bootsector.inc"
 
-; entry point
-_start:
+	extern clear
+_clear:
 	call clear
 
+; entry point
+_start:
 	mov ah, 0x0e	; tty, print characters
 	mov si, string
 
 	jmp printstring
+
+%include "data.asm"
+%include "screen.asm"
+%include "stdio.asm"
 
 ; fill remaining spaces with 0
 times 510 - ($-$$) db 0

@@ -1,25 +1,37 @@
 ASM = nasm
 
-LD = ld
+LINKER = ld
 
 ELFS = bootloader.elf
 
-LDSCRIPT = -Ttext=0x7c00
+LSCRIPT = -Ttext=0x7c00
 
 AFLAGS = elf64
 
-OBJS = bootloader.o
+OBJS = bootsector.o data.o lib.o screen.o stdio.o
 
 QEMU = qemu-system-x86_64
 
 TARGET = bootloader
 
 $(TARGET): $(OBJS)
-	@$(LD) -s $(LDSCRIPT) $(OBJS) -o $(ELFS)
+	@$(LINKER) -s $(LSCRIPT) $(OBJS) -o $(ELFS)
 	@objcopy -O binary $(ELFS) $(TARGET)
 
-bootloader.o: bootloader.asm
-	@$(ASM) -f $(AFLAGS) bootloader.asm
+bootsector.o: bootsector.asm bootsector.inc data.asm
+	@$(ASM) -f $(AFLAGS) bootsector.asm
+
+data.o: data.asm
+	@$(ASM) -f $(AFLAGS) data.asm
+
+lib.o: lib.asm
+	@$(ASM) -f $(AFLAGS) lib.asm
+
+screen.o: screen.asm
+	@$(ASM) -f $(AFLAGS) screen.asm
+
+stdio.o:
+	@$(ASM) -f $(AFLAGS) stdio.asm
 
 .PHONY: run clean clean-all
 

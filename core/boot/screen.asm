@@ -1,7 +1,7 @@
 ;;
  ; clear - clears the screen
 ;;
-
+[bits 16]
 clear:
 	pusha	; push all registers
 
@@ -10,4 +10,6 @@ clear:
 	mov al, 0x03
 	int 0x10	; interrupt
 
-	
+	popa	; restore all pushed registers
+
+	ret

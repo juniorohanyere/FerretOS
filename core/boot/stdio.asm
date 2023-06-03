@@ -1,5 +1,6 @@
 %include "stdio.inc"
-; extern _start
+extern _start
+[bits 16]
 
 ;;
  ; printstring - function to print strings to the bootloader stdout
@@ -8,13 +9,13 @@
 printstring:
 	lodsb	; load the string into al
 	cmp al, 0	; check for end of string
-	je string_ended	; if al equals 0, jump to getchar function
+	je getchar	; if al equals 0, jump to getchar function
 	int 0x10	; interrupt
 	jmp printstring	; loop if not end of string
 
-string_ended:
-	call newline
-	jmp getchar
+;string_ended:
+;	call newline
+;	jmp getchar
 
 ;;
  ; getchar - function that checks for keyboard input
@@ -23,7 +24,7 @@ string_ended:
 ;;
 
 getchar:
-	;;call newline
+	call newline
 
 	; push all registers
 	pusha

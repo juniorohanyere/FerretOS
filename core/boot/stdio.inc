@@ -1,3 +1,3 @@
 ;;
 
-extern _start
+extern _start	; bootsector.asm
