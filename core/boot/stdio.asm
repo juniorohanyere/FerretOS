@@ -51,11 +51,11 @@ newline:
 	mov ah, 0x0e	; character mode (tty)
 
 	; position the string to the beginning of the line
-	mov al, 0x0D	; carriage return character "\r"
+	mov al, 0x0d	; carriage return character "\r"
 	int 0x10	; print the character
 
 	; position the string to the next line
-	mov al, 0x0A	; new line character "\n"
+	mov al, 0x0a	; new line character "\n"
 	int 0x10	; print the character
 
 	ret

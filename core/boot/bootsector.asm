@@ -22,6 +22,7 @@ _start:
 
 	jmp printstring
 
+; subroutines
 %include "data.asm"
 %include "screen.asm"
 %include "stdio.asm"
