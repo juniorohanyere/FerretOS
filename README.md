@@ -1,6 +1,6 @@
-# CLIOS
+# CLine OS
 
-`CLIOS` is an acronym for `Command Line Interface Operating System` 
+`CLine OS` is an acronym for `Command Line Operating System` 
 
 > An operating system (OS) that manages computer hardware and software resources and provides common services for computer programs via a command-line interface (CLI).
 
@@ -37,91 +37,52 @@
 # Project Structure
 
 ```
-clios
+CLineOS
  |
  |-core/
  |  |
  |  |-boot/
- |  |  |
- |  |  |-(...)
  |  |
  |  |-cpu/
- |  |  |
- |  |  |-(...)
  |  |
  |  |-drivers/
- |  |  |
- |  |  |-(...)
  |  |
  |  |-kernel/
- |  |  |
- |  |  |-(...)
- |  |
- |  |-(...)
  |
  |-os/
- |  |
- |  |-bash/
- |  |  |
- |  |  |-(...)
- |  |
- |  |-libs/
- |  |  |
- |  |  |-(...)
- |  |
- |  |-sysroot/
- |  |  |
- |  |  |-bin/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-devices/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-etc/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |  
- |  |  |-home/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-media/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-root/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-tmp/
- |  |  |  |
- |  |  |  |-(...)
- |  |  |
- |  |  |-usr/
- |  |  |  |
- |  |  |  |-bin/
- |  |  |     |
- |  |  |     |-(...)
- |  |  |
- |  |  |-(...)
- |  |
- |  |-term/
- |  |  |
- |  |  |-(...)
- |  |
- |  |-utils/
- |  |  |
- |  |  |-(...)
- |  |
- |  |-websh
- |  |  |
- |  |  |-(...)
- |  |
- |  |-(...)
- |
- |-(...)
+    |
+    |-bash/
+    |
+    |-libs/
+    |
+    |-sysroot/
+    |  |
+    |  |-bin/
+    |  |
+    |  |-devices/
+    |  |
+    |  |-etc/
+    |  |  
+    |  |-home/
+    |  |
+    |  |-media/
+    |  |
+    |  |-root/
+    |  |
+    |  |-tmp/
+    |  |
+    |  |-usr/
+    |     |
+    |     |-bin/
+    |
+    |-term/
+    |
+    |-utils/
+    |
+    |-websh/
 
 ```
+> The above structure shows a prototype for directories of the project.
+> NOTE: It's just a PROTOTYPE and can be modified or entirely changed with time.
 > See the readme files located in each directories for more info
+
