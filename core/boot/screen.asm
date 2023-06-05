@@ -1,5 +1,7 @@
 [bits 16]	; using 16-bits mode
 
+;section .text
+
 ;;
  ; clear - clears the screen
 ;;
