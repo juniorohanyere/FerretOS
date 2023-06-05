@@ -5,10 +5,7 @@
 [bits 16]
 
 ;code segment
-;section .text
-;	global _start
-;_start:
-;	jmp _clear
+section .text
 
 ;;
  ; _clear - calls the clear label in screen.asm
@@ -33,10 +30,3 @@ start:
 	call getc	; gets key press
 
 	jmp start
-
-; include subroutines
-
-;%include "bootloader.inc"
-
-;times 510 - ($-$$) db 0
-;dw 0xaa55

@@ -14,7 +14,7 @@ section .text
 ;;
 
 _start:
-;	jmp _clear	; label from bootloader.asm
+	jmp _clear	; label from bootloader.asm
 
 ; subroutines
 %include "bootloader.asm"
