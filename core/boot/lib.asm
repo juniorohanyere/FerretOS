@@ -1,4 +1,4 @@
-;section .text
+section .text
 
 ;;
  ; halt - halts or stops the system

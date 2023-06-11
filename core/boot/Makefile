@@ -8,7 +8,7 @@ LSCRIPT = -Ttext=0x7c00
 
 ASMFLAGS = elf64
 
-OBJS = bootloader.o bootsector.o data.o lib.o screen.o stdio.o
+OBJS = bootsector.o data.o lib.o screen.o stdio.o
 
 QEMU = qemu-system-x86_64
 
@@ -20,10 +20,7 @@ $(TARGET): $(OBJS)
 	@$(LINKER) $(LSCRIPT) $^ -o $(ELF)
 	@objcopy -O binary $(ELF) $@
 
-bootloader.o: bootloader.asm bootloader.inc bootsector.asm data.asm screen.asm stdio.asm
-	@$(ASM) -f $(ASMFLAGS) $< -o $@
-
-bootsector.o: bootsector.asm bootsector.inc bootloader.asm
+bootsector.o: bootsector.asm bootsector.inc data.asm screen.asm stdio.asm
 	@$(ASM) -f $(ASMFLAGS) $< -o $@
 
 data.o: data.asm
