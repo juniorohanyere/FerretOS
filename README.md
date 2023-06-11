@@ -1,6 +1,4 @@
-# CLine OS
-
-`CLine OS` is an acronym for `Command Line Operating System` 
+# Ferret OS
 
 > An operating system (OS) that manages computer hardware and software resources and provides common services for computer programs via a command-line interface (CLI).
 
@@ -37,7 +35,7 @@
 # Project Structure
 
 ```
-CLineOS
+FerretOS
  |
  |-core/
  |  |
