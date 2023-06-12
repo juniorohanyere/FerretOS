@@ -81,6 +81,8 @@ FerretOS
 
 ```
 > The above structure shows a prototype for directories of the project.
+
 > NOTE: It's just a PROTOTYPE and can be modified or entirely changed with time.
+
 > See the readme files located in each directories for more info
 
