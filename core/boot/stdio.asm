@@ -1,17 +1,35 @@
 [bits 16]	; using 16-bits mode
 
+; code segment
 section .text
 
+printc:
+	mov ah, 0x0e	; tty mode
+	int 0x10
+
+	ret
+
+prints:
+	pusha
+
+	jmp loopc
 ;;
  ; prints - function to print strings to the bootloader stdout
 ;;
 
-prints:
-	lodsb	; load the string to al
-	cmp al, 0	; check for end of string
-	int 0x10	; print the characters
-	jne prints	; if al is not equal to 0,
-			; jump to prints (loop)
+loopc:
+	mov al, [bx]	; bx is the base address for the string
+
+	mov ah, 0x0e	; tty mode
+	int 0x10	; print every character encountered during the loop
+
+	add bx, 1	; increment pointer
+
+	cmp al, 0	; compare if al equals 0 (end of string)
+
+	jne loopc	; if not equal to 0, loop
+
+	popa	; restore all pushed registers
 
 	ret
 
@@ -37,7 +55,7 @@ getc:
 	; restore all pushed registers
 	popa
 
-	call printn
+	call printnl
 
 	ret
 
@@ -45,7 +63,7 @@ getc:
  ; printn - function to print a new line character
 ;;
 
-printn:
+printnl:
 	mov ah, 0x0e	; character mode (tty)
 
 	; position the string to the beginning of the line

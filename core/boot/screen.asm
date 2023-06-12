@@ -1,5 +1,6 @@
 [bits 16]	; using 16-bits mode
 
+; code segment
 section .text
 
 ;;
