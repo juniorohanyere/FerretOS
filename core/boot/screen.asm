@@ -8,13 +8,20 @@ section .text
 ;;
 
 clear:
-	pusha	; push all registers
+	pusha
 
 	; clear the screen
 	mov ah, 0x00
 	mov al, 0x03
 	int 0x10	; interrupt
 
-	popa	; restore all pushed registers
+	popa
+
+	ret
+
+_clear:
+	mov ah, 0x00
+	mov al, 0x03
+	int 0x10
 
 	ret

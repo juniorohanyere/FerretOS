@@ -12,12 +12,12 @@ printc:
 prints:
 	pusha
 
-	jmp looppc
+	jmp loopps
 ;;
  ; prints - function to print strings to the bootloader stdout
 ;;
 
-looppc:	; loop printc
+loopps:	; loop prints
 	mov al, [bx]	; bx is the base address for the string
 
 	call printc
@@ -26,7 +26,7 @@ looppc:	; loop printc
 
 	cmp al, 0	; compare if al equals 0 (end of string)
 
-	jne looppc	; if not equal to 0, loop
+	jne loopps	; if not equal to 0, loop
 
 	popa	; restore all pushed registers
 
@@ -49,4 +49,4 @@ printnl:
 
 	ret
 
-%include "getbuffer.asm"
+%include "stdio.inc"
