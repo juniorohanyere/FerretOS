@@ -1,0 +1,3 @@
+; subroutines
+
+%include "validate.asm"

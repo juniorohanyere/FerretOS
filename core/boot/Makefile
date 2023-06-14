@@ -2,10 +2,10 @@ ASM = nasm
 
 ASMFLAGS = bin
 
-SRCS = bootsector.asm bootloader.asm data.asm getbuffer.asm options.asm \
-	screen.asm stdio.asm string.asm
+SRCS = bootsector.asm bootloader.asm data.asm getbuffer.asm screen.asm \
+	stdio.asm string.asm validate.asm
 
-HEADERS = bootloader.inc bootsector.inc
+INCLUDES = bootloader.inc bootsector.inc getbuffer.inc stdio.inc
 
 QEMU = qemu-system-x86_64
 
@@ -13,7 +13,7 @@ TARGET = bootloader
 
 all: $(TARGET)
 
-$(TARGET): $(SRCS) $(HEADERS)
+$(TARGET): $(SRCS) $(INCLUDES)
 	@$(ASM) -f $(ASMFLAGS) $< -o $@
 
 .PHONY: run clean

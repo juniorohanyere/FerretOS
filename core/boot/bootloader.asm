@@ -1,7 +1,11 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;		boot loader		;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 section .text	; code segment
 
 ;;
- ; _clear - calls the clear label in screen.asm
+ ; _clear_ - calls the clear label in screen.asm
 ;;
 
 _clear_:
@@ -12,9 +16,9 @@ _clear_:
 ;;
 
 start:
-	call header
+	call header	; print the name of the bootloader
 	call printnl
-	call continue
+	call continue	; print the string prompting user to continue
 
 	call getc	; gets key press
 	call clear
@@ -22,11 +26,11 @@ start:
 	call header
 	call printnl
 
-	call options
+	call options	; print the bootloader menus
 
-	xor bx, bx
-	call gets
+	xor bx, bx	; set bx to index counter
+	call gets	; get buffer
 
-	jmp $
+	jmp $	; hang
 
 %include "bootloader.inc"

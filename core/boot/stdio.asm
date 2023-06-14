@@ -3,18 +3,28 @@
 ; code segment
 section .text
 
+;;
+ ; printc - prints a character to stdout
+;;
+
 printc:
 	mov ah, 0x0e	; tty mode
 	int 0x10
 
 	ret
 
+;;
+ ; prints - prints a string to stdout
+ ;
+ ; Description: transfers control to loopps label
+;;
+
 prints:
 	pusha
 
 	jmp loopps
 ;;
- ; prints - function to print strings to the bootloader stdout
+ ; loopps - engine for prints
 ;;
 
 loopps:	; loop prints
@@ -33,7 +43,7 @@ loopps:	; loop prints
 	ret
 
 ;;
- ; printn - function to print a new line character
+ ; printnl - function to print a new line character
 ;;
 
 printnl:

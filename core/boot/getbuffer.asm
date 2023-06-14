@@ -1,3 +1,5 @@
+section .text
+
 ;;
  ; getc - function that checks for keyboard input
  ;
@@ -20,18 +22,22 @@ getc:
 
 	ret
 
-gets:
-	;pusha
+;;
+ ; gets - gets buffer from user
+ ;
+ ; Description: buffer is limited to two characters
+;;
 
-	mov ah, 0x00
-	int 0x16
+gets:
+	mov ah, 0x00	; wait for input
+	int 0x16	; mov al, [input]
 
 	mov [buffer + bx], al	; store character in buffer index (data.asm)
 
-	cmp bx, 2
+	cmp bx, 2	; limiting buffer to two characters
 	je loopgs
 
-	call printc
+	call printc	; print each character entered
 
 	inc bx	; increment buffer index
 
@@ -40,20 +46,19 @@ gets:
 
 	call choice
 
-	;popa
 	ret
 
 loopgs:
-	cmp al, 0x0d
+	cmp al, 0x0d	; is input new line?
 	je choice
 
 	mov al, 0x0d	; carriage return "\r"
 	call printc
 
-	; print the whole visible characters
-	mov al, [buffer]
+	; reprint the availabe characters
+	mov al, [buffer]	; buffer[0] as in high level langauge
 	call printc
-	mov al, [buffer + 1]
+	mov al, [buffer + 1]	; buffer[1]
 	call printc
 
 	mov ah, 0x00	; wait for input
@@ -61,38 +66,5 @@ loopgs:
 
 	jmp loopgs	; repeat the process if not new line
 
-choice:
-	mov al, [buffer]
-
-	cmp al, 0x0d
-	je choice1
-
-	cmp al, 0x31
-	je ch1
-
-	jmp choice0
-
-choice0:
-	call _clear
-
-	mov al, "N"
-	call printc
-
-	ret
-
-choice1:
-	call _clear
-
-	mov al, "Y"
-	call printc
-	ret
-
-ch1:
-	mov al, [buffer + 1]
-
-	cmp al, 0x0d
-	je choice1
-
-	jmp choice0
-
-	ret
+; subroutines
+%include "getbuffer.inc"

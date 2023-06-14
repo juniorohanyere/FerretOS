@@ -3,6 +3,9 @@
 ;;
  ; @msg: string to print an header
  ; @cont: string prompting the user to continue
+ ; @opt1: first boot option
+ ; @opt2: second boot option
+ ; @buffer: uninitialized variable to store characters
 ;;
 
 msg: db \
