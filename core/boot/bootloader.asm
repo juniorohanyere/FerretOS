@@ -4,7 +4,7 @@ section .text	; code segment
  ; _clear - calls the clear label in screen.asm
 ;;
 
-_clear:
+_clear_:
 	call clear	; label from screen.asm
 
 ;;
@@ -12,23 +12,14 @@ _clear:
 ;;
 
 start:
-	mov bx, string
-	call prints	; prints the string to stdout
-	call printnl	; prints a new line
-
+	call header
 	call printnl
-
-	mov bx, cont
-	call prints
+	call continue
 
 	call getc	; gets key press
-
 	call clear
 
-	mov bx, string
-	call prints
-	call printnl
-
+	call header
 	call printnl
 
 	call options

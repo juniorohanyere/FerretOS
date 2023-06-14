@@ -16,7 +16,7 @@ section .text
 ;;
 
 _start:
-	jmp _clear	; first clear the screen
+	jmp _clear_	; first clear the screen
 
 ; subroutines
 %include "bootsector.inc"

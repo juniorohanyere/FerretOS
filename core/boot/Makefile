@@ -2,7 +2,8 @@ ASM = nasm
 
 ASMFLAGS = bin
 
-SRCS = bootsector.asm bootloader.asm data.asm getbuffer.asm options.asm screen.asm stdio.asm
+SRCS = bootsector.asm bootloader.asm data.asm getbuffer.asm options.asm \
+	screen.asm stdio.asm string.asm
 
 HEADERS = bootloader.inc bootsector.inc
 

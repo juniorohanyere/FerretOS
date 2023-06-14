@@ -1,11 +1,11 @@
 ; section .data
 
 ;;
- ; @string: string to print an header
+ ; @msg: string to print an header
  ; @cont: string prompting the user to continue
 ;;
 
-string: db \
+msg: db \
 	"CLIMB-Command_Line_Interface_Multi-Bootloader-v1.0.0_(pre-release)", \
 	0x00	; null terminated => 0x00
 
