@@ -2,7 +2,7 @@ ASM = nasm
 
 ASMFLAGS = bin
 
-SRCS = bootsector.asm bootloader.asm data.asm getbuffer.asm screen.asm \
+SRCS = bootsector.asm bootloader.asm data.asm disk.asm getbuffer.asm screen.asm \
 	stdio.asm string.asm validate.asm
 
 INCLUDES = bootloader.inc bootsector.inc getbuffer.inc stdio.inc

@@ -35,6 +35,14 @@ choice1:
 
 	mov al, "Y"	; 'Y' means 'Yes' (valid choice)
 	call printc
+
+	mov bp, 0x8000
+	mov sp, bp
+
+	mov bx, 0x9000
+	mov dh, 2
+
+	call load_disk
 	ret
 ;;
  ; ch1 - checks if second character is valid
@@ -50,3 +58,4 @@ ch1:
 	jmp choice0
 
 	ret
+%include "disk.asm"

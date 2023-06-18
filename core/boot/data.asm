@@ -19,3 +19,7 @@ opt1: db "1. Boot into FerretOS", 0x00	; lol, just can't wait to get started :)
 opt2: db "2. System diagnostics", 0x00
 
 buffer: db 10
+
+derror: db "Unable to read from disk", 0
+
+serror: db "Incorrect number of sectors read", 0
