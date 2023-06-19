@@ -1,40 +1,39 @@
 ;;
- ; - choice - validates availability of user's boot choice
+ ; validate - validates availability of user's boot choice
 ;;
 
-choice:
-	mov al, [buffer]
+validate:
+	mov al, [si]	; si is a pointer to the string
+			; we want to perform operation on
 
-	cmp al, 0x0d
-	je choice1      ; expected to load the selected OS kernel
+	cmp al, 0x00	; check if first character is null
+	je load_kernel
 
-	cmp al, 0x31    ; is input numerical key 1?
-	je ch1
+	cmp al, 0x31    ; else check if first character is numeriacal key 1
+	je ch2
 
-	jmp choice0     ; expected to print an invalid message
+	call printnl
 
-;;
- ; choice0 - expected to print invalid choice
- ;	     and prompt for right choice
-;;
-
-choice0:
-	call _clear
-
-	mov al, "N"	; 'N' means 'No' (invalid choice)
-	call printc
+	mov si, opt_inv
+	call prints
+	call printnl
 
 	ret
 
 ;;
- ; choice1 - expected to load OS kernel
+ ; load_kernel - expected to load OS kernel
 ;;
 
-choice1:
-	call _clear
+load_kernel:
+	call clear
 
-	mov al, "Y"	; 'Y' means 'Yes' (valid choice)
-	call printc
+	mov si, loading
+	call prints
+	call printnl
+
+	mov si, fboot
+	call prints
+	call printnl
 
 	mov bp, 0x8000
 	mov sp, bp
@@ -42,20 +41,25 @@ choice1:
 	mov bx, 0x9000
 	mov dh, 2
 
-	call load_disk
+	call read_disk
+
 	ret
 ;;
- ; ch1 - checks if second character is valid
+ ; ch2 - checks if second character is valid
  ;	 afer first character is valid
 ;;
 
-ch1:
-	mov al, [buffer + 1]
+ch2:
+	mov al, [si + 1]
 
-	cmp al, 0x0d
-	je choice1
+	cmp al, 0x00
+	je load_kernel
 
-	jmp choice0
+	call _clear
+
+	mov al, "N"	; expected to invalidate
+	call printc
 
 	ret
+
 %include "disk.asm"

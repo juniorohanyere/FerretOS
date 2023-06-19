@@ -15,30 +15,20 @@ printc:
 
 ;;
  ; prints - prints a string to stdout
- ;
- ; Description: transfers control to loopps label
 ;;
 
 prints:
-	pusha
+	lodsb	; load character in al
 
-	jmp loopps
-;;
- ; loopps - engine for prints
-;;
+	call printc	; print the character in al
 
-loopps:	; loop prints
-	mov al, [bx]	; bx is the base address for the string
+	cmp al, 0	; is al => null
+	jne prints
 
+	mov al, 0x08	; we need to clear the extra space printed
+			; the space is a result of the null termination
+			; but no worries, we got that covered
 	call printc
-
-	add bx, 1	; increment pointer
-
-	cmp al, 0	; compare if al equals 0 (end of string)
-
-	jne loopps	; if not equal to 0, loop
-
-	popa	; restore all pushed registers
 
 	ret
 

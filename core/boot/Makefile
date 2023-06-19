@@ -2,10 +2,10 @@ ASM = nasm
 
 ASMFLAGS = bin
 
-SRCS = bootsector.asm bootloader.asm data.asm disk.asm getbuffer.asm screen.asm \
-	stdio.asm string.asm validate.asm
+SRCS = bootsector.asm bootloader.asm data.asm disk.asm getbuffer.asm \
+	keyboard.asm screen.asm stdio.asm string.asm validate.asm
 
-INCLUDES = bootloader.inc bootsector.inc getbuffer.inc stdio.inc
+INCLUDES = bootloader.inc bootsector.inc stdio.inc
 
 QEMU = qemu-system-x86_64
 

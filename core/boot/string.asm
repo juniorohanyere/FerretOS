@@ -1,9 +1,9 @@
 ;;
- ; header - print the value of @msg
+ ; header - print the value of @head
 ;;
 
 header:
-	mov bx, msg
+	mov si, head
 	call prints	; prints the string to stdout
 	call printnl	; prints a new line
 
@@ -13,24 +13,30 @@ header:
 ;;
 
 continue:
-	mov bx, cont
+	mov si, cont
 	call prints
 
 	ret
 
 ;;
- ; options - print the value of @opt1 and @opt2
+ ; options - print the value of @opt1, @opt2 and @optd
  ;
  ; Description: expected to read from disk
  ;		to determine the options to display
 ;;
 
 options:
-	mov bx, opt1
+	mov si, opt1
 	call prints
 	call printnl
 
-	mov bx, opt2
+	mov si, opt2
+	call prints
+	call printnl
+
+	call printnl
+
+	mov si, optd
 	call prints
 	call printnl
 
