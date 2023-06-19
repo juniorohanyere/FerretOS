@@ -19,7 +19,7 @@ continue:
 	ret
 
 ;;
- ; options - print the value of @opt1, @opt2 and @optd
+ ; options - print the value of @opt1 and @opt2
  ;
  ; Description: expected to read from disk
  ;		to determine the options to display
@@ -34,10 +34,6 @@ options:
 	call prints
 	call printnl
 
-	call printnl
-
-	mov si, optd
-	call prints
 	call printnl
 
 	ret

@@ -13,10 +13,10 @@ validate:
 	je ch2
 
 	call printnl
-
-	mov si, opt_inv
-	call prints
 	call printnl
+
+	mov al, "N"	; denoting "No"
+	call printc
 
 	ret
 
@@ -27,13 +27,8 @@ validate:
 load_kernel:
 	call clear
 
-	mov si, loading
-	call prints
-	call printnl
-
-	mov si, fboot
-	call prints
-	call printnl
+	mov al, "Y"	; denoting "Yes"
+	call printc
 
 	mov bp, 0x8000
 	mov sp, bp
