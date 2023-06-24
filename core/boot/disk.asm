@@ -8,19 +8,25 @@ read_disk:
 	pusha
 	push dx
 
-	mov ah, 0x02	; read mode
+	mov ah, 0x02	; BIOS read sector mode
 	mov al, dh	; dh => number of sectors to read
-	mov ch, 0x00	; ch => cylinder
-	mov dh, 0x00	; dh => head number
+	mov ch, 0x00	; ch => cylinder, select cylinder 0
+	mov dh, 0x00	; dh => head number, select head 0
+			; select the track on first side of floppy disk
+			; count of the sides of a floppy disk starts from 0
 	mov cl, 0x02	; cl => sector
-			; 0x01 is the bootsector
+			; 0x01 is the bootsector (base)
 			; 0x02 is the first available sector
+			; select the second sector on the track,
+			; "it isn't a typo"
+			; tart reading from second sector
+			; i.e. after the boot sector
 
 	;int 0x13	; BIOS interrupt
 	jc disk_error	; if carry
 
 	pop dx
-	cmp al, dh
+	cmp al, dh	; if al (sectors read) != dh (sectors expected)
 	jne sectors_error
 
 	popa

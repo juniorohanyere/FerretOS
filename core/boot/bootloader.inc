@@ -5,3 +5,4 @@
 %include "stdio.asm"
 %include "string.asm"
 %include "validate.asm"
+%include "gdt.asm"

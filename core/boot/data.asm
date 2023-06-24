@@ -25,3 +25,5 @@ buffer: db 255
 derror: db "Unable to read from disk", 0x00
 
 serror: db "Incorrect number of sectors read", 0x00
+
+msg_protected_mode: db "Loaded 32 bit", 0x00
