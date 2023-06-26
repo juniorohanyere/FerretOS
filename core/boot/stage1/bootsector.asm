@@ -2,7 +2,7 @@
 ;;;;		boot sector		;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[org 0x7c00]	; offset is bootsector code
+[org 0x7c00]	; segment address
 
 [bits 16]
 
@@ -17,6 +17,7 @@ section .text
 
 _start:
 	jmp _clear_	; first clear the screen
+	jmp $
 
 ; subroutines
 %include "stage1/bootsector.inc"
@@ -27,3 +28,8 @@ times 510 - ($-$$) db 0
 
 ; magic number
 dw 0xaa55
+
+; subroutines for stage2
+
+%include "stage2/bootsector.asm"
+
