@@ -40,6 +40,10 @@ FerretOS
  |-core/
  |  |
  |  |-boot/
+ |  |  |
+ |  |  |-stage1
+ |  |  |
+ |  |  |-stage2
  |  |
  |  |-cpu/
  |  |
