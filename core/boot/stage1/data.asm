@@ -1,21 +1,21 @@
 ; section .data
 
 ;;
- ; @msg: string to print an header
+ ; @head: string to print an header
  ; @cont: string prompting the user to continue
- ; @opt1: first boot option
- ; @opt2: second boot option
  ; @buffer: uninitialized variable to store characters
+ ; @derror: disk error message
+ ; @serror: sector error message
 ;;
 
-msg: db \
+head: db \
 	"CLIMB-Command_Line_Interface_Multi-Bootloader-v1.0.0_(pre-release)", \
 	0x00	; null terminated => 0x00
 
 cont: db "Press Any Key To Continue", 0x00
 
-opt1: db "1. Boot into FerretOS", 0x00	; lol, just can't wait to get started :)
+buffer: db 255
 
-opt2: db "2. System diagnostics", 0x00
+derror: db "Unable to read from disk", 0x00
 
-buffer: db 10
+serror: db "Incorrect number of sectors read", 0x00
