@@ -1,59 +1,62 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot loader [stage 2]		;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;		boot loader		;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 section .text	; code segment
 
 ;;
- ; start2 - entry point after clearing the screen
+ ; _clear_ - calls the clear label in screen.asm
 ;;
 
-start2:
+_clear_:
+	call clear	; label from screen.asm
+
+;;
+ ; start - entry point after clearing the screen
+;;
+
+start:
 	call header	; print the name of the bootloader
 	call printnl
+	call continue	; print the string prompting user to continue
 
-	call options
-	call printnl
+	call getc	; gets key press
+	call clear
 
-	call printnl
+	mov bp, 0x9000
+	mov sp, bp
 
-	mov cx, 4
-
-	mov si, buffer
-
-	call gets
-
-;	call protected_mode
+	call protected_mode
 	jmp $	; hang here
 
-;[bits 16]
-;protected_mode:
-;	cli
-;	lgdt [gdt_descriptor]
-;	mov eax, cr0
-;	or eax, 0x1
-;	mov cr0, eax
-;	jmp CODE_SEG:init_protected_mode
-;
-;[bits 32]
-;init_protected_mode:
-;	mov ax, DATA_SEG
-;	mov ds, ax
-;	mov ss, ax
-;	mov es, ax
-;	mov fs, ax
-;	mov gs, ax
-;
-;	mov ebp, 0x90000
-;	mov esp, ebp
-;
-;	call start_protected_mode
-;
-;[bits 32]
-;start_protected_mode:
-;	mov ebx, msg_protected_mode
-;
-;	call prints32
-;
-;	jmp $
-%include "stage2/bootloader.inc"
+[bits 16]
+protected_mode:
+	cli
+	lgdt [gdt_descriptor]
+	mov eax, cr0
+	or eax, 0x1
+	mov cr0, eax
+	jmp CODE_SEG:init_protected_mode
+
+[bits 32]
+init_protected_mode:
+	mov ax, DATA_SEG
+	mov ds, ax
+	mov ss, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+
+	mov ebp, 0x90000
+	mov esp, ebp
+
+	call start_protected_mode
+
+[bits 32]
+start_protected_mode:
+	mov ebx, msg_protected_mode
+
+	call prints32
+
+	jmp $
+%include "bootloader.inc"

@@ -2,6 +2,11 @@
 ;;;;		boot sector [stage 2]		;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;[org 0x9000]	; set our segment address for our stage 2
+		; far away from our stage 1 segment address
+		; the sector will be loaded at 0x9000:0x0000
+		; by our stage 1 boot sector
+
 [bits 16]
 
 ; code segment
@@ -10,19 +15,9 @@ section .text
 
 _start2:
 	mov al, 'H'
-	call printc2
-;	call printc
-
-;	jmp start2	; jump to the start2 label of the stage2 bootloader
-
+	mov ah, 0x0e
+	int 0x10
 	jmp $
 
-; subroutines
-%include "stage2/print2.asm"
-;%include "stage2/bootsector.inc"
-
-; fill space (512) with 0 bytes
 times 512 db 0
-
-; word to fill space with
 dw 0x0000
