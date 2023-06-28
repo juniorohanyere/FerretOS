@@ -5,23 +5,17 @@
 section .text	; code segment
 
 ;;
- ; _clear_ - calls the clear label in screen.asm
-;;
-
-_clear_:
-	call clear	; label from screen.asm
-
-;;
  ; start - entry point after clearing the screen
 ;;
 
 start:
+	call clearscreen
+
 	call header	; print the name of the bootloader
-	call printnl
+	call printnewline
 	call continue	; print the string prompting user to continue
 
-	call getc	; gets key press
-	call clear
+	call getchar	; gets key press
 
 	call reset_disk
 

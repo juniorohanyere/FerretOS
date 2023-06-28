@@ -4,10 +4,10 @@
 section .text
 
 ;;
- ; clearscreen - clears the screen
+ ; clear - clears the screen
 ;;
 
-clearscreen:
+clear:
 	pusha
 
 	; clear the screen

@@ -16,7 +16,8 @@ section .text
 ;;
 
 _start:
-	jmp _clear_	; first clear the screen
+	jmp start
+
 	jmp $
 
 ; subroutines

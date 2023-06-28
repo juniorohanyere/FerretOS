@@ -44,8 +44,8 @@ read_disk:
 
 disk_error:
 	mov bx, derror
-	call prints
-	call printnl
+	call printstring
+	call printnewline
 
 	; mov dh, ah	; ah => error code
 			; dl => disk drive that dropped the error
@@ -57,8 +57,8 @@ disk_error:
 
 sectors_error:
 	mov bx, serror
-	call prints
-	call printnl
+	call printstring
+	call printnewline
 
 	ret
 

@@ -35,3 +35,6 @@ gets:
 	call key	; keyboard.asm
 
 	ret
+
+; subroutine
+%include "stage2/getbuffer.inc"

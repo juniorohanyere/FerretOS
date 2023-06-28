@@ -5,3 +5,4 @@
 %include "stage1/stdio.asm"
 %include "stage1/string.asm"
 %include "stage1/disk.asm"
+%include "stage1/getbuffer.asm"

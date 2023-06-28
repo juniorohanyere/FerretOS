@@ -4,8 +4,8 @@
 
 header:
 	mov si, head
-	call prints	; prints the string to stdout
-	call printnl	; prints a new line
+	call printstring	; prints the string to stdout
+	call printnewline	; prints a new line
 
 	ret
 ;;
@@ -14,6 +14,6 @@ header:
 
 continue:
 	mov si, cont
-	call prints
+	call printstring
 
 	ret

@@ -2,11 +2,6 @@
 ;;;;		boot sector [stage 2]		;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;[org 0x9000]	; set our segment address for our stage 2
-		; far away from our stage 1 segment address
-		; the sector will be loaded at 0x9000:0x0000
-		; by our stage 1 boot sector
-
 [bits 16]
 
 ; code segment
@@ -14,10 +9,21 @@ section .text
 	global _start2
 
 _start2:
-	mov al, 'H'
+	call clear
+
+	mov al, [head3 + 1]	; something isn't right here
+				; doesn't print, why?
 	mov ah, 0x0e
 	int 0x10
+	call printc
+
+	jmp start2
+
 	jmp $
+
+head3: db "How", 0
+; subroutine
+%include "stage2/bootsector.inc"
 
 times 512 db 0
 dw 0x0000
