@@ -9,9 +9,11 @@ all: $(TARGET)
 $(TARGET): subsystem
 	@cat $(BIN) > $(TARGET)
 
-subsystem:
+subsystem: stage2
 	$(MAKE) -C stage1
 	$(MAKE) -C stage2
+
+stage2: stage1
 
 .PHONY: run clean clean-all
 

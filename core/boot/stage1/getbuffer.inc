@@ -1,3 +1,0 @@
-; subroutine
-
-%include "keyboard.asm"

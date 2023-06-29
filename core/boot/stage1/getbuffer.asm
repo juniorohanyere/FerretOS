@@ -35,6 +35,3 @@ gets:
 	call key	; keyboard.asm
 
 	ret
-
-; subroutine
-%include "getbuffer.inc"
