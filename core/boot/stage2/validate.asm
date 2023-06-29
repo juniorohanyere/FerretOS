@@ -24,8 +24,13 @@ validate:
 load_kernel:
 	call clear
 
-	mov al, "Y"	; denoting "Yes"
-	call printc
+	call printnl
+;	call printnl
+
+	mov bp, 0x9000	; set up the stack
+	mov sp, bp
+
+	call protected_mode
 
 	ret
 ;;

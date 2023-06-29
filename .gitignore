@@ -37,6 +37,7 @@
 *.hex
 
 # Binaries
+*.bin
 bootloader
 
 # Debug files
