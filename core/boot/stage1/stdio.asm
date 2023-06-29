@@ -48,5 +48,3 @@ printnl:
 	int 0x10	; print the character
 
 	ret
-
-%include "stage1/stdio.inc"

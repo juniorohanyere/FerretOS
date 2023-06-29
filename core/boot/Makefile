@@ -1,12 +1,4 @@
-ASM = nasm
-
-ASMFLAGS = bin
-
-SRCS = stage1/bootsector.asm stage1/bootloader.asm stage1/data.asm \
-	stage1/disk.asm stage1/getc.asm stage1/screen.asm stage1/stdio.asm \
-	stage1/string.asm stage2/$(bootsector.asm)
-
-INCLUDES = stage1/bootloader.inc stage1/bootsector.inc stage1/stdio.inc
+BIN = stage1/bootloader.bin stage2/bootloader.bin
 
 QEMU = qemu-system-x86_64
 
@@ -14,12 +6,23 @@ TARGET = bootloader
 
 all: $(TARGET)
 
-$(TARGET): $(SRCS) $(INCLUDES)
-	@$(ASM) -f $(ASMFLAGS) $< -o $@
+$(TARGET): subsystem
+	@cat $(BIN) > $(TARGET)
 
-.PHONY: run clean
+subsystem: stage2
+	$(MAKE) -C stage1
+	$(MAKE) -C stage2
+
+stage2: stage1
+
+.PHONY: run clean clean-all
 
 run:
-	@-$(QEMU) -drive format=raw,file=$(TARGET)
+	@$(QEMU) -drive format=raw,file=$(TARGET)
+
 clean:
+	-$(MAKE) -C stage1 clean
+	-$(MAKE) -C stage2 clean
+
+clean-all: clean
 	@-rm $(TARGET)

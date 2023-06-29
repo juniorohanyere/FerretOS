@@ -1,3 +1,3 @@
 ; subroutines
 
-%include "stage1/getc.asm"
+; %include "stage1/getbuffer.asm"
