@@ -1,29 +1,30 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot loader		;;;;
+;;;;		boot loader ;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-section .text	; code segment
+section .text ; code segment
 
 ;;
  ; start - entry point after clearing the screen
 ;;
 
 start:
-	call clearscreen
+	call clear
 
 	call header	; print the name of the bootloader
-	call printnewline
+	call printnl
 	call continue	; print the string prompting user to continue
 
-	call getchar	; gets key press
+	call getc	; gets key press
 
 	call reset_disk
 
-	mov ax, 0x9000	; set the segment address where the stage 2
+	xor ax, ax	; set the segment address where the stage 2
 			; will be loaded
+	mov ds, ax
 	mov es, ax	; set es segment register to the same value
 
-	xor bx, bx	; set the offset address where stage 2
+	mov bx, 0x8000	; set the offset address where stage 2
 			; will be loaded => 0x0000
 
 	mov dh, 2	; read two sectors
@@ -32,8 +33,7 @@ start:
 
 	call read_disk
 
-	jmp 0x9000:0x0000	; jump to execute stage 2
+	jmp 0x8000	; jump to execute stage 2
 
 ; subroutines
-
-%include "stage1/bootloader.inc"
+%include "bootloader.inc"
