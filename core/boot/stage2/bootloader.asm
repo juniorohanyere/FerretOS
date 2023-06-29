@@ -8,16 +8,23 @@ section .text	; code segment
  ; start - entry point after clearing the screen
 ;;
 
-start2:
-;	call clear
+start:
+	xor ax, ax
+	mov ds, ax
+	mov es, ax
 
-;	call header2	; print the name of the bootloader
-;	call printnl
+	call clear
 
-;	mov bp, 0xffff
-;	mov sp, bp
+	call header
+	call printnl
+	call options
+	call printnl
 
-;	call protected_mode
+	mov cx, 4	; set buffer limit to 4 characters
+	mov si, buffer
+	call gets	; read/get input
+
+	call validate
 
 	jmp $	; hang here
 
@@ -53,4 +60,4 @@ start2:
 ;	jmp $
 ;
 ; subroutine
-%include "stage2/bootloader.inc"
+%include "bootloader.inc"

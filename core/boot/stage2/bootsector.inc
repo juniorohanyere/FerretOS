@@ -1,3 +1,3 @@
 ; subroutines
 
-%include "stage2/bootloader.asm"
+%include "bootloader.asm"
