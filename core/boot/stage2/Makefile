@@ -4,9 +4,9 @@ ASMFLAGS = bin
 
 SRC = bootsector.asm
 
-DEPS = bootloader.asm data.asm string.asm validate.asm
+DEPS = bootloader.asm data.asm kernel.asm stdio32.asm string.asm validate.asm
 
-INCLUDES = bootloader.inc bootsector.inc data.inc string.inc
+INCLUDES = bootloader.inc bootsector.inc data.inc string.inc validate.inc
 
 QEMU = qemu-system-x86_64
 

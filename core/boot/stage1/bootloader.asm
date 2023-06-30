@@ -24,7 +24,7 @@ start:
 	mov ds, ax
 	mov es, ax	; set es segment register to the same value
 
-	mov bx, 0x8000	; set the offset address where stage 2
+	mov bx, 0x1000	; set the offset address where stage 2
 			; will be loaded => 0x0000
 
 	mov dh, 2	; read two sectors
@@ -33,7 +33,7 @@ start:
 
 	call read_disk
 
-	jmp 0x8000	; jump to execute stage 2
+	jmp 0x1000	; jump to execute stage 2
 
 ; subroutines
 %include "bootloader.inc"

@@ -12,7 +12,7 @@ opt2: db "2. System diagnostics", 0x00
 
 buffer: db 255
 
-msg_protected_mode: db "32 bit mode", 0x00
+; dafault: db "Defaulting to first option in 5 seconds", 0x00
 
 ; subroutine
 %include "data.inc"

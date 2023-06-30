@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;		boot sector [stage 2]		;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-[org 0x8000]
+[org 0x1000]
 [bits 16]
 
 ; code segment
@@ -16,6 +16,4 @@ _start:
 ; subroutine
 %include "bootsector.inc"
 
-times 512 db 0
-dw 0xface
-;times ((0x400) - ($ - $$)) db 0x00
+times ((0x400) - ($ - $$)) db 0x00
