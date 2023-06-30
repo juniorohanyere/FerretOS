@@ -57,7 +57,11 @@ init_protected_mode:
 [bits 32]
 start_protected_mode:
 	mov ebx, boot
+	mov ecx, 0
+	call prints32
 
+	mov ebx, loading
+	mov ecx, 160
 	call prints32
 
 	jmp $
