@@ -13,6 +13,9 @@ start:
 	mov ds, ax
 	mov es, ax
 
+;	mov [boot_drive], dl	; BIOS sets our boot drive in dl
+;	mov bx, 0x9000
+
 	call clear
 
 	call header
@@ -52,18 +55,14 @@ init_protected_mode:
 	mov ebp, 0xb800
 	mov esp, ebp
 
-	call start_protected_mode
+	; uncomment the following lines to debug
+	; whether switch to protected mode was successful
+	; also uncomment the "debug_protected_mode" label
+	; at the buttom of this file
 
-[bits 32]
-start_protected_mode:
-	mov ebx, boot
-	mov ecx, 0
-	call prints32
+	; mov ebx, debug_protected_mode
+	; call prints32
 
-	mov ebx, loading
-	mov ecx, 160
-	call prints32
+	jmp kernel	; kernel.asm
 
-	jmp $
-
-%include "data32.asm"
+; debug_protected_mode: db "Protected Mode", 0x00

@@ -9,3 +9,4 @@
 %include "validate.asm"
 %include "gdt.asm"
 %include "stdio32.asm"
+%include "../stage1/disk.asm"

@@ -12,6 +12,8 @@ opt2: db "2. System diagnostics", 0x00
 
 buffer: db 255
 
+boot_drive: db 0x00
+
 ; dafault: db "Defaulting to first option in 5 seconds", 0x00
 
 ; subroutine
