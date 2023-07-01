@@ -60,9 +60,9 @@ init_protected_mode:
 	; also uncomment the "debug_protected_mode" label
 	; at the buttom of this file
 
-	; mov ebx, debug_protected_mode
-	; call prints32
+	mov ebx, debug_protected_mode
+	call prints32
 
 	jmp kernel	; kernel.asm
 
-; debug_protected_mode: db "Protected Mode", 0x00
+debug_protected_mode: db "Protected Mode", 0x00

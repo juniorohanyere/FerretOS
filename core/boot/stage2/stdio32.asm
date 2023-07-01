@@ -2,7 +2,7 @@
 
 ; defining constants
 VIDEO_MEMORY equ 0xb8000
-WHITE_ON_BLACK equ 0x07	; the colour byte for each character
+WHITE_ON_BLACK equ 0x0f	; the colour byte for each character
 
 prints32:
 	pusha

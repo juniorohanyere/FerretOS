@@ -1,6 +1,6 @@
 ASM = nasm
 
-ASMFLAGS = bin
+AFLAGS = bin
 
 SRC = bootsector.asm
 
@@ -17,7 +17,7 @@ TARGET = bootloader.bin
 all: $(TARGET)
 
 $(TARGET): $(SRC) $(DEPS) $(INCLUDES)
-	@$(ASM) -f $(ASMFLAGS) $< -o $@
+	@$(ASM) -f $(AFLAGS) $< -o $@
 
 .PHONY: clean
 

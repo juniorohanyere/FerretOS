@@ -40,7 +40,7 @@ kernel:
 	; give control to the kernel
 	call KERNEL_OFFSET
 
-	jmp $	; hang on here
+	jmp $
 
 booting: db "booting into FerretOS...", 0x00
 
