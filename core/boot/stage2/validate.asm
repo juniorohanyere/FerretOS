@@ -7,7 +7,7 @@ validate:
 			; we want to perform operation on
 
 	cmp al, 0x00	; check if first character is null
-	je loader
+	je load_kernel
 
 	cmp al, 0x31    ; else check if first character is numeriacal key 1
 	je validate2
@@ -18,18 +18,6 @@ validate:
 	ret
 
 ;;
- ; loader - expected to load OS kernel
-;;
-
-loader:
-	call clear
-	call printnl
-	call printnl
-
-	call load_kernel
-
-	ret
-;;
  ; validate2 - checks if second character is valid
  ;	 afer first character is valid
 ;;
@@ -38,7 +26,7 @@ validate2:
 	mov al, [si + 1]
 
 	cmp al, 0x00
-	je loader
+	je load_kernel
 
 	mov si, invalid
 	call prints

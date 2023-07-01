@@ -7,18 +7,18 @@ TARGET = bootloader
 all: $(TARGET)
 
 $(TARGET): subsystem
-	@cat $(BIN) > $(TARGET)
+	@cat $(BIN) > $@
 
 subsystem: stage2
-	$(MAKE) -C stage1
-	$(MAKE) -C stage2
+	-$(MAKE) -C stage1
+	-$(MAKE) -C stage2
 
 stage2: stage1
 
 .PHONY: run clean clean-all
 
 run:
-	@$(QEMU) -drive format=raw,file=$(TARGET)
+	@-$(QEMU) -drive format=raw,file=$(TARGET)
 
 clean:
 	-$(MAKE) -C stage1 clean
