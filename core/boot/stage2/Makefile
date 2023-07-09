@@ -8,10 +8,11 @@ AFLAGS = -f elf64
 SRCS = bootsector.asm
 
 # dependencies
-DEPS =
+DEPS = bootloader.asm data.asm gdt.asm getbuffer.asm keyboard.asm string.asm \
+	validate.asm
 
 # includes
-INCLUDES =
+INCLUDES = bootloader.inc bootsector.inc data.inc string.inc
 
 # target - to be linked with a kernel.o file
 # found in the 'FerretOS/core/kernel' directory

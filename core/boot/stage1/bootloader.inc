@@ -4,5 +4,5 @@
 %include "stdio.asm"
 %include "screen.asm"
 %include "disk.asm"
-%include "gdt.asm"
 %include "data.asm"
+%include "getc.asm"
