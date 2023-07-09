@@ -8,11 +8,11 @@ AFLAGS = -f bin
 SRCS = bootsector.asm
 
 # dependencies
-DEPS = bootloader.asm data.asm disk.asm gdt.asm getc.asm screen.asm stdio.asm \
+DEPS = bootloader.asm data.asm disk.asm getc.asm screen.asm stdio.asm \
 	string.asm
 
 # includes
-INCLUDES = bootloader.inc bootsector.inc stdio.inc
+INCLUDES = bootloader.inc bootsector.inc
 
 # target
 TARGET = bootloader.bin

@@ -20,7 +20,7 @@ start:
 	mov ah, 0x0e
 	mov al, 'Y'
 	int 0x10
-	call switch32	; switch to protected mode
+	call 0x1000	; transfer control to stage 2
 
 	ret
 
@@ -31,16 +31,6 @@ read_stage2:
 
 	mov bx, 0x1000
 	mov dh, 0x02
-
-	ret
-
-switch32:
-	cli	; disable interrupts
-	lgdt [gdt_descriptor]
-	mov eax, cr0
-	or eax, 0x1
-	mov cr0, eax
-	jmp CODE_SEG:0x1000
 
 	ret
 
