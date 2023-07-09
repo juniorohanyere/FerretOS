@@ -11,8 +11,7 @@ LDFLAGS = -Ttext 0x1000 --oformat binary
 ELF = boot/stage2/bootloader.elf
 
 # object files for the drivers
-OBJS = drivers/ports.o drivers/screen2.o #drivers/screen.o
-# linking with the drivers/screen.o has a conflict
+OBJS = drivers/ports.o drivers/screen.o drivers/screen2.o
 
 # object files for kernel
 OBJS += kernel/kernel.o

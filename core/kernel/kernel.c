@@ -1,4 +1,4 @@
-/* #include "../drivers/screen.h" */
+#include "../drivers/screen.h"
 /* #include "kernel.h" */
 
 /**
@@ -11,7 +11,7 @@ int main(void)
 {
 	char *video_memory = (char *) 0xb8000;
 
-	/* clearscr(); */
+	clearscr();
 	*video_memory = 'L';
 
 	return (0);
