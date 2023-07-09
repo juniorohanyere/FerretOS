@@ -37,14 +37,14 @@ int getcur(void)
 
 	outb(SCR_CTRL, 14);
 
-	offset = inb(SCR_DATA) << 8; */	/* High byte: << 8 */
+	offset = inb(SCR_DATA) << 8;*/	/* High byte: << 8 */
 /*
 	outb(SCR_CTRL, 15);
 
 	offset += inb(SCR_DATA);
 
-	return offset * 2;*/ /* position * size of character cell */
-/*} */
+	return (offset * 2);*/ /* position * size of character cell */
+/*}*/
 
 /**
  * setcur - sets or updates the cursor offset for the screen

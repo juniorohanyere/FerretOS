@@ -1,5 +1,5 @@
 #include "../drivers/screen.h"
-/* #include "kernel.h" */
+#include "kernel.h"
 
 /**
  * main - entry point for out kernel
