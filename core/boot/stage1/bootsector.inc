@@ -1,3 +1,2 @@
-; subroutines
 
 %include "bootloader.asm"

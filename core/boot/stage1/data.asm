@@ -3,6 +3,7 @@
 ;;
  ; @head: string to print an header
  ; @cont: string prompting the user to continue
+ ; @buffer: uninitialized variable to store characters
  ; @derror: disk error message
  ; @serror: sector error message
 ;;

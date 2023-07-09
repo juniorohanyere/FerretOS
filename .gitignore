@@ -38,7 +38,7 @@
 
 # Binaries
 *.bin
-bootloader
+*.img
 
 # Debug files
 *.dSYM/

@@ -1,9 +1,8 @@
 ; subroutines
 
-%include "data.asm"
-%include "screen.asm"
-%include "stdio.asm"
 %include "string.asm"
+%include "stdio.asm"
+%include "screen.asm"
 %include "disk.asm"
-%include "getbuffer.asm"
-%include "keyboard.asm"
+%include "data.asm"
+%include "getc.asm"

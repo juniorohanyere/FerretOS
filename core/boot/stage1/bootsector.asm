@@ -1,31 +1,24 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot sector		;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[org 0x7c00]	; segment address
+[org 0x7c00]
 
 [bits 16]
 
-; code segment
 section .text
-
 	global _start
-
-;;
- ; _start - entry point
-;;
 
 _start:
 	jmp start
 
+	mov ah, 0x0e
+	mov al, 'P'
+	int 0x10
+
 	jmp $
 
-; subroutines
+; subroutine
 %include "bootsector.inc"
 
-; padding: fill remaining spaces with 0
-; 510 zeros minus size of previous codes
-times 510 - ($-$$) db 0
-
-; magic number
+; padding and magic number
+times 510 - ($ - $$) db 0
 dw 0xaa55
+;times 256 dw 0xdada
+;times 256 dw 0xface

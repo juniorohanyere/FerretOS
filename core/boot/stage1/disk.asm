@@ -1,5 +1,14 @@
 section .text
 
+reset_disk:
+	mov ah, 0	; BIOS reset disk function
+
+	int 0x13
+
+	jc reset_disk	; if carry flag is set, there was an error
+			; try resetting again
+	ret
+
 ;;
  ; read_disk - function to read from disk
 ;;
@@ -19,8 +28,8 @@ read_disk:
 			; start reading from second sector
 			; i.e. after the boot sector
 	mov dh, 0x00	; dh => head number, select head 0
-			; select the track on first side of floppy disk
-			; count of the sides of a floppy disk starts from 0
+			; select the track on first side of floppy/hard disk
+			; count of the sides of floppy/hard disk starts from 0
 	; mov dl, 0x80
 	; dl => drive number. Our caller sets it as a parameter
 	; and gets it from BIOS.
@@ -43,14 +52,12 @@ read_disk:
 ;;
 
 disk_error:
-	pusha
 	mov bx, derror
 	call prints
 	call printnl
 
 	; mov dh, ah	; ah => error code
 			; dl => disk drive that dropped the error
-	popa
 
 	ret
 ;;
@@ -58,20 +65,8 @@ disk_error:
 ;;
 
 sectors_error:
-	pusha
 	mov bx, serror
 	call prints
 	call printnl
 
-	popa
-	ret
-
-reset_disk:
-	pusha
-	mov ah, 0	; BIOS reset disk function
-
-	int 0x13
-
-	jc reset_disk	; if carry flag is set, there was an error
-	popa		; try resetting again
 	ret

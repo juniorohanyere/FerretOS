@@ -1,50 +1,47 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot loader		;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+section .text
+	[extern main]	; our kernel is based on this main function
+			; it is the entry point of our kernel written in c
 
-section .text	; code segment
-
-;;
- ; start - entry point after clearing the screen
-;;
+[bits 16]
 
 start:
 	xor ax, ax
 	mov ds, ax
 	mov es, ax
 
-;	mov [boot_drive], dl	; BIOS sets our boot drive in dl
-;	mov bx, 0x9000
+	call clear	; clear the screen
 
-	call clear
-
-	call header
-	call printnl
-	call options
+	call header	; print the bootloader's name
 	call printnl
 
-	mov cx, 4	; set buffer limit to 4 characters
-	mov si, buffer
-	call gets	; read/get input
+	call options	; print a list of boot options
+	call printnl
 
-	call validate
+	mov cx, 4	; set the maximum number of characters to 4
+	mov si, buffer	; the key input will be saved in this pointer
+			; for further reference
+	call gets	; read key inputs and save in 'si'
+
+	call validate	; jump to the selected boot option
 
 	jmp $	; hang here
 
-[bits 16]
-protected_mode:
-	cli
+load_kernel:
+	; switch to protected mode
+	; because our kernel is a 32 bit kernel
+
+	cli     ; disable interrupts
 	lgdt [gdt_descriptor]
 	mov eax, cr0
 	or eax, 0x1
 	mov cr0, eax
-	jmp CODE_SEG:init_protected_mode
+	jmp CODE_SEG:init32
 
-; subroutine
-%include "bootloader.inc"
+	ret
 
 [bits 32]
-init_protected_mode:
+
+init32:
 	mov ax, DATA_SEG
 	mov ds, ax
 	mov ss, ax
@@ -52,17 +49,17 @@ init_protected_mode:
 	mov fs, ax
 	mov gs, ax
 
-	mov ebp, 0xb800
+	mov ebp, 0x9000
 	mov esp, ebp
 
-	; uncomment the following lines to debug
-	; whether switch to protected mode was successful
-	; also uncomment the "debug_protected_mode" label
-	; at the buttom of this file
+	jmp kernel
 
-	mov ebx, debug_protected_mode
-	call prints32
+[bits 32]
 
-	jmp kernel	; kernel.asm
+kernel:
+	call main ;  jump to the kernel's entry point
 
-debug_protected_mode: db "Protected Mode", 0x00
+	jmp $
+
+; subroutine
+%include "bootloader.inc"

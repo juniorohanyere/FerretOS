@@ -1,19 +1,12 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot sector [stage 2]		;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-[org 0x1000]
-[bits 16]
-
-; code segment
 section .text
 	global _start
 
+[bits 16]
 _start:
 	jmp start
 
 	jmp $
 
 ; subroutine
-%include "bootsector.inc"
 
-times ((0x400) - ($ - $$)) db 0x00
+%include "bootsector.inc"

@@ -1,7 +1,7 @@
 ;;
  ; validate - validates availability of user's boot choice
 ;;
-
+[bits 16]
 validate:
 	mov al, [si]	; si is a pointer to the string
 			; we want to perform operation on
@@ -33,8 +33,7 @@ validate2:
 
 	ret
 
-; section .data
 invalid: db "Invalid option", 0x00
 
 ; subroutine
-%include "validate.inc"
+; %include "validate.inc"
