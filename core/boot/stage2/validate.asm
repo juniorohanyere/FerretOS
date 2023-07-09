@@ -33,5 +33,7 @@ validate2:
 
 	ret
 
+invalid: db "Invalid option", 0x00
+
 ; subroutine
 ; %include "validate.inc"

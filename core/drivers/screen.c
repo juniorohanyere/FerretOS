@@ -33,9 +33,11 @@ void clearscr(void)
 
 int getcur(void)
 {
-	outb(SCR_CRTL, 14);
+	int offset;
 
-	int offset = inb(SCR_DATA) << 8;	/* High byte: << 8 */
+	outb(SCR_CTRL, 14);
+
+	offset = inb(SCR_DATA) << 8;	/* High byte: << 8 */
 
 	outb(SCR_CTRL, 15);
 

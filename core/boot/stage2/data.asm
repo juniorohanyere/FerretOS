@@ -14,8 +14,6 @@ buffer: db 255
 
 boot_drive: db 0x00
 
-invalid: db "Invalid option", 0x00
-
 ; dafault: db "Defaulting to first option in 5 seconds", 0x00
 
 ; subroutine

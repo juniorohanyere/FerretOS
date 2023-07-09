@@ -25,7 +25,7 @@ int getxy(int x, int y)
 
 int getx(int p)
 {
-	offset = gety(p);
+	int offset = gety(p);
 
 	return ((p - (offset * 2 * MAX_X)) / 2);
 }

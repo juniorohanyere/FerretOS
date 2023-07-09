@@ -16,7 +16,7 @@ INCLUDES = bootloader.inc bootsector.inc data.inc string.inc
 
 # target - to be linked with a kernel.o file
 # found in the 'FerretOS/core/kernel' directory
-TARGET = bootloader.o
+TARGET = bootloader.elf
 
 
 all: $(TARGET)
@@ -24,7 +24,10 @@ all: $(TARGET)
 $(TARGET): $(SRCS) $(DEPS) $(INCLUDES)
 	@$(ASM) $(AFLAGS) $< -o $@
 
-.PHONY: clean
+.PHONY: clean clean-all
 
 clean:
 	@-rm $(TARGET)
+
+clean-all:
+	@-rm *.elf

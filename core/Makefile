@@ -1,31 +1,40 @@
-BIN = boot/stage1/bootloader.bin kernel/kernel.bin
+# linker
+LD = ld
 
-QEMU = qemu-system-x86_64
+# linker flags
+# linking with an offset of 0x1000
+# and generating a binary output
+LDFLAGS = -Ttext 0x1000 --oformat binary
 
-TARGET = ferret.img
+# elf file for bootloader
+# to be linked with the kernel object files
+ELF = boot/stage2/bootloader.elf
 
-all: $(TARGET)
+# object files for the drivers
+OBJS = drivers/ports.o drivers/screen2.o #drivers/screen.o
+# linking with the drivers/screen.o has a conflict
 
-$(TARGET): subsystem
-	@cat $(BIN) > $@
+# object files for kernel
+OBJS += kernel/kernel.o
+
+# set a target, we're creating a binary file
+# to represent our kernel that will be linked with the bootloader
+TARGET = kernel.bin
+
+all: subsystem $(TARGET)
+
+$(TARGET): $(ELF) $(OBJS)
+	$(LD) $(LDFLAGS) $^ -o $@
 
 subsystem:
-	-$(MAKE) -C boot/stage1
 	-$(MAKE) -C boot/stage2
+	-$(MAKE) -C drivers
 	-$(MAKE) -C kernel
 
-.PHONY: run clean clean-all
-
-run:
-	@-$(QEMU) -drive format=raw,file=$(TARGET)
+.PHONY: clean clean-all
 
 clean:
-	-$(MAKE) -C boot/stage1 clean
-	-$(MAKE) -C boot/stage2 clean
-	-$(MAKE) -C kernel clean
+	@-rm $(TARGET)
 
 clean-all:
-	@-rm $(TARGET)
-	-$(MAKE) -C boot/stage1 clean
-	-$(MAKE) -C boot/stage2 clean
-	-$(MAKE) -C kernel clean-all
+	@-rm *.bin

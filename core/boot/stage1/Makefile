@@ -22,7 +22,10 @@ all: $(TARGET)
 $(TARGET): $(SRCS) $(DEPS) $(INCLUDES)
 	@$(ASM) $(AFLAGS) $< -o $@
 
-.PHONY: clean
+.PHONY: clean clean-all
 
 clean:
 	@-rm $(TARGET)
+
+clean-all:
+	@-rm *.bin
