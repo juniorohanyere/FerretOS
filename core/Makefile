@@ -23,7 +23,7 @@ TARGET = kernel.bin
 all: subsystem $(TARGET)
 
 $(TARGET): $(ELF) $(OBJS)
-	$(LD) $(LDFLAGS) $^ -o $@
+	@$(LD) $(LDFLAGS) $^ -o $@
 
 subsystem:
 	-$(MAKE) -C boot/stage2

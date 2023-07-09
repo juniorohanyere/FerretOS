@@ -17,9 +17,6 @@ start:
 
 	call read_disk
 
-	mov ah, 0x0e
-	mov al, 'Y'
-	int 0x10
 	call 0x1000	; transfer control to stage 2
 
 	ret
@@ -30,7 +27,7 @@ read_stage2:
 	mov es, ax
 
 	mov bx, 0x1000
-	mov dh, 0x02
+	mov dh, 0x04	; read four sectors
 
 	ret
 

@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -ffreestanding -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 	-Wall -pedantic -Werror -Wextra -std=gnu89
 
-OBJS = ports.o screen.o
+OBJS = ports.o screen.o screen2.o
 
 all: $(OBJS)
 
@@ -21,5 +21,5 @@ screen2.o: screen2.c screen.h ports.h
 clean:
 	@-rm $(OBJS)
 
-clean-all: clean
+clean-all:
 	@-rm *.o

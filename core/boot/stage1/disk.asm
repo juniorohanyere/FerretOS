@@ -28,8 +28,8 @@ read_disk:
 			; start reading from second sector
 			; i.e. after the boot sector
 	mov dh, 0x00	; dh => head number, select head 0
-			; select the track on first side of floppy disk
-			; count of the sides of a floppy disk starts from 0
+			; select the track on first side of floppy/hard disk
+			; count of the sides of floppy/hard disk starts from 0
 	; mov dl, 0x80
 	; dl => drive number. Our caller sets it as a parameter
 	; and gets it from BIOS.
