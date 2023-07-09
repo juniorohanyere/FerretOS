@@ -1,3 +1,0 @@
-; subroutine
-
-%include "kernel.asm"

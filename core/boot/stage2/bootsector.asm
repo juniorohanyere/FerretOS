@@ -1,19 +1,26 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot sector [stage 2]		;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-[org 0x1000]
-[bits 16]
-
-; code segment
 section .text
 	global _start
 
+[bits 32]
 _start:
-	jmp start
+	mov ax, DATA_SEG
+	mov ds, ax
+	mov ss, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
 
+	mov ebp, 0x9000
+	mov esp, ebp
+
+	call kernel
+
+[bits 32]
+kernel:
+	[extern main] ; Define calling point. Must have same name as kernel.c 'main' function
+	call main ; Calls the C function. The linker will know where it is placed in memory
 	jmp $
 
-; subroutine
-%include "bootsector.inc"
+%include "../stage1/gdt.asm"
 
-times ((0x400) - ($ - $$)) db 0x00
+times 256 dw 0xdada

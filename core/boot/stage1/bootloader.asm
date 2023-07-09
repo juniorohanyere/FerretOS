@@ -1,39 +1,48 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;		boot loader ;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[bits 16]
 
-section .text ; code segment
-
-;;
- ; start - entry point after clearing the screen
-;;
+section .text
 
 start:
 	call clear
 
-	call header	; print the name of the bootloader
+	call header
 	call printnl
-	call continue	; print the string prompting user to continue
+	call continue
 
-	call getc	; gets key press
+	call getc
 
 	call reset_disk
 
-	xor ax, ax	; set the segment address where the stage 2
-			; will be loaded
-	mov ds, ax
-	mov es, ax	; set es segment register to the same value
-
-	mov bx, 0x1000	; set the offset address where stage 2
-			; will be loaded => 0x0000
-
-	mov dh, 2	; read two sectors
-			; BIOS automatically sets dl
-			; for our boot disk number
+	call read_stage2 ; read stage 2 from disk
 
 	call read_disk
 
-	jmp 0x1000	; jump to execute stage 2
+	mov ah, 0x0e
+	mov al, 'Y'
+	int 0x10
+	call switch32	; switch to protected mode
 
-; subroutines
+	ret
+
+read_stage2:
+	xor ax, ax	; set the segment where stage 2 will be loaded
+	mov ds, ax
+	mov es, ax
+
+	mov bx, 0x1000
+	mov dh, 0x02
+
+	ret
+
+switch32:
+	cli	; disable interrupts
+	lgdt [gdt_descriptor]
+	mov eax, cr0
+	or eax, 0x1
+	mov cr0, eax
+	jmp CODE_SEG:0x1000
+
+	ret
+
+; subroutine
 %include "bootloader.inc"

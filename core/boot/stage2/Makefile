@@ -1,23 +1,27 @@
+# assembler
 ASM = nasm
 
-AFLAGS = bin
+# assembler flags
+AFLAGS = -f elf64
 
-SRC = bootsector.asm
+# source files
+SRCS = bootsector.asm
 
-DEPS = bootloader.asm data32.asm data.asm kernel.asm stdio32.asm \
-	string.asm validate.asm
+# dependencies
+DEPS =
 
-INCLUDES = bootloader.inc bootsector.inc data.inc string.inc \
-	validate.inc
+# includes
+INCLUDES =
 
-QEMU = qemu-system-x86_64
+# target - to be linked with a kernel.o file
+# found in the 'FerretOS/core/kernel' directory
+TARGET = bootloader.o
 
-TARGET = bootloader.bin
 
 all: $(TARGET)
 
-$(TARGET): $(SRC) $(DEPS) $(INCLUDES)
-	@$(ASM) -f $(AFLAGS) $< -o $@
+$(TARGET): $(SRCS) $(DEPS) $(INCLUDES)
+	@$(ASM) $(AFLAGS) $< -o $@
 
 .PHONY: clean
 

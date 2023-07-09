@@ -1,30 +1,28 @@
-ASM = nasm
-
 CC = gcc
 
-AFLAGS = -f elf64
+LD = ld
 
-CFLAGS = -ffreestanding
+CFLAGS = -ffreestanding -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
+	-Wall -pedantic -Werror -Wextra -std=gnu89
 
-OBJS = kernel.o kernel_entry.o
+LDFLAGS = -Ttext 0x1000 --oformat binary
 
-TARGET = kernel
+OBJS = ../boot/stage2/bootloader.o kernel.o
+
+TARGET = kernel.bin
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	ld -o $@ -Ttext 0x1000 $^ --oformat binary
+	@$(LD) $(LDFLAGS) $^ -o $@
 
 kernel.o: kernel.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-kernel_entry.o: kernel_entry.asm
-	$(ASM) $< $(AFLAGS) -o $@
-
-.PHONY: clean clean
+.PHONY: clean clean-all
 
 clean:
-	@-rm $(OBJS)
+	@-rm *.o
 
-clean-all:
-	@-rm $(TARGET) *.o
+clean-all: clean
+	@-rm $(TARGET)

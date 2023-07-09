@@ -1,22 +1,26 @@
+# assembler
 ASM = nasm
 
-AFLAGS = bin
+# assembler flags
+AFLAGS = -f bin
 
-SRC = bootsector.asm
+# source files
+SRCS = bootsector.asm
 
-DEPS = bootloader.asm data.asm disk.asm getbuffer.asm keyboard.asm screen.asm \
-	stdio.asm string.asm
+# dependencies
+DEPS = bootloader.asm data.asm disk.asm gdt.asm getc.asm screen.asm stdio.asm \
+	string.asm
 
+# includes
 INCLUDES = bootloader.inc bootsector.inc stdio.inc
 
-QEMU = qemu-system-x86_64
-
+# target
 TARGET = bootloader.bin
 
 all: $(TARGET)
 
-$(TARGET): $(SRC) $(DEPS) $(INCLUDES)
-	@$(ASM) -f $(AFLAGS) $< -o $@
+$(TARGET): $(SRCS) $(DEPS) $(INCLUDES)
+	@$(ASM) $(AFLAGS) $< -o $@
 
 .PHONY: clean
 

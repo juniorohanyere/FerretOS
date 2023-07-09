@@ -48,3 +48,5 @@ printnl:
 	int 0x10	; print the character
 
 	ret
+
+%include "stdio.inc"
